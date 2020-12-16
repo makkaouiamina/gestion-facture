@@ -4,4 +4,4 @@
 * Express
 * MongoDB Atlas
 
-![alt text](https://github.com/makkaouiamina/gestion-facture/public/img/demo.png "Logo Title Text 1")
+![alt text](relative/path/to/demo.png "Logo Title Text 1")
