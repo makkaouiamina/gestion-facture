@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand txt-nav" href="/dashboard"><i style="font-size: 30px; margin-left:40px; margin-top:-30px" class="fas fa-home"></i></a>
+ </div>  <ul class="nav navbar-nav navbar-right">
+    <li><a class="txt-nav" style=" font-size: 15px;" href="#"><i class="fas fa-user"> <%= username %></i></a></li>
+    <li><a class="txt-nav" style=" font-size: 20px;margin-right:70px;" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+   </ul>
+</div>
+</nav>
+<% if(user.isAdmin){ %> 
+<div class="row">
+<div class="topnav text-center">
+  <div style="padding-left: 150px;padding-right: 150px;">
+  <table class="table table-hover">
+      <thead>
+          <tr>   
+              <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users/<%= user._id %>">Mes informations</a></th>
+              <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users">Liste des utilisateurs</a></th>
+              <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/factures">Liste des factures</a></th>  
+              <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/clients">Liste des clients</a></th>
+              <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/produits">Liste des produits</a></th> 
+          </tr> 
+      </thead>
+  </table>
+  </div>
+</div>
+</div>
+<div class="row">
+<div class="card card-body-5">
+<nav class="navbar navbar-light text-center">
+<% include ../partials/messages %>
+<form action="/clients/modifier/<%= client._id %>" method="POST">
+<div class="col col-lg-6">
+<table class="table table-hover"> 
+<thead>
+    <tr>
+        <td><label for="client_name"> Nom du client :</label></td>
+        <td><input type="text" name="client_name" value="<%= client.client_name %>" class="form-control" id="client_name"></td>
+    </tr>
+    <tr>
+        <td><label for="client_email"> Email du client :</label></td>
+        <td><input type="email" name="client_email" value="<%= client.client_email %>" class="form-control" id="client_email"></td>
+    </tr> 
+</thead>
+</table>
+</div>
+<div class="col col-lg-6">
+<table class="table table-hover">
+    <thead>
+  <tr>
+      <td><label for="client_adr"> Adresse :</label></td>
+      <td><input type="text" name="client_adr" value="<%= client.client_adr %>" class="form-control" id="client_rue"></td>
+  </tr>   
+  <tr>
+      <td><label for="client_tel"> Telephone du client :</label></td>
+      <td><input type="text" name="client_tel" value="<%= client.client_tel %>" class="form-control" id="client_tel"></td>
+  </tr>
+</thead>
+</table>
+</div>
+<button  class="btn btn-warning btn-block">Modifier</button>
+</form>
+</nav>
+</div>
+</div>
+<% } %>
+
+

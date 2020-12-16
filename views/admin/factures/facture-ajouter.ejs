@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand txt-nav" href="/users/dashboard"><i style="font-size: 30px; margin-left:40px; margin-top:-30px" class="fas fa-home"></i></a>
+   </div>  <ul class="nav navbar-nav navbar-right">
+      <li><a class="txt-nav" style=" font-size: 15px;" href="#"><i class="fas fa-user"> <%= username %></i></a></li>
+      <li><a class="txt-nav" style=" font-size: 20px;margin-right:70px;" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+     </ul>
+  </div>
+  </nav><% if(user.isAdmin) { %> 
+  <div class="row">
+    <div class="topnav text-center">
+      <div style="padding-left: 150px;padding-right: 150px;">
+      <table class="table table-hover">
+          <thead>
+              <tr>   
+                  <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users/<%= user._id %>">Mes informations</a></th>
+                  <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users">Liste des utilisateurs</a></th>  
+                  <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/clients">Liste des clients</a></th> 
+                  <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/factures">Liste des factures</a></th> 
+                  <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/produits">Liste des produits</a></th> 
+              </tr> 
+          </thead>
+    </div>
+      </table>
+  </div>
+</div>
+
+ 
+    <div class="card card-body-2">
+    
+    <% include ../partials/messages %>
+    <form action="/factures/ajouter/<%= client._id %>" method="POST">
+    <div class="row">
+        <table class="table table-hover"> 
+            <tr>
+                <td><label for="desf"> Description du facture :</label></td>
+                <td><input type="text" name="desf" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><label for="date"> Date :</label></td>
+                <td><input type="date" name="date" class="form-control"></td>
+            </tr>
+            <tr>
+                    <td><label > Client :</label></td>
+                    <td> <input type="text" value="<%= client.client_name %>" name="client_name" class="form-control">
+                         </td>
+            </tr><tr>
+                <input type="hidden" name="id" value="<%= client.user1._id %>">
+            </tr>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block "><i class="fas fa-plus-square"></i></button>
+    </form>
+    </div>
+    <% } %>

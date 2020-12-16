@@ -1,0 +1,33 @@
+<body background="/images/white.jpeg">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+  <!-- <div class="navbar-header">
+          <a class="navbar-brand txt-nav" href="/login"><img style="max-width:170px; margin-top:-20px; margin-left:50px"
+            src="/img/fs.png"></a> --> 
+    </div> 
+  </nav>
+  <div class="row" style="margin-top: 80px;padding-left: 100px">
+    <div class="card card-body-1">
+          <% include ./partials/messages %>
+          <div class="text-center"><img src="/images/fact.jpeg" class="rounded-circle" height="90" width="90" alt="Alternative texte de l'image" /> </div>
+        </br><h1 class="text-center text"><i class="fas fa-sign-9n-alt"></i>  Se Connecter</h1>
+  
+    <form action="/login" method="POST">
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <td><label for="username">Email</label></td>
+                  <td><input type="email" placeholder="Entrer votre email" name="email" class="form-control" id="email"></td>
+              </tr>
+              <tr>
+                  <td> <label for="password">Mot de passe</label></td>
+                  <td><input type="password" placeholder="Entrer votre mot de passe" name="password" class="form-control" id="password"></td>
+              </tr>
+            </thead>
+          </table>
+          <button type="submit" class="btn btn-primary btn-block ">Se Connecter</button>
+            </form>
+            <p class="lead mt-4 text-center">
+               <a href="/register">Sinscrire</a>
+            </p>
+</div></body>

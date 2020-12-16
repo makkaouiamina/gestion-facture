@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand txt-nav" href="/dashboard"><i style="font-size: 30px; margin-left:40px; margin-top:-30px" class="fas fa-home"></i></a>
+   </div>  <ul class="nav navbar-nav navbar-right">
+      <li><a class="txt-nav" style=" font-size: 15px;" href="#"><i class="fas fa-user"> <%= username %></i></a></li>
+      <li><a class="txt-nav" style=" font-size: 20px;margin-right:70px;" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+     </ul>
+  </div>
+</nav>
+<% if(user.isLoggedIn){ %> 
+<div class="row">
+    <div class="topnav text-center">
+      <div style="padding-left: 150px;padding-right: 150px;">
+      <table class="table table-hover">
+          <thead>
+            <tr>  
+                <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users/<%= user._id %>">Mes informations</a></th> 
+                <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/clients">Liste des clients</a></th>
+                <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/factures">Liste des factures</a></th> 
+                <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/produits">Liste des produits</a></th> 
+            </tr> 
+          </thead>
+      </table>
+  </div></div>
+</div>
+<div class="card card-body-2">
+
+<% include ../partials/messages %>
+<form action="/clients/<%= c._id %>/facturer" method="POST">
+<div class="row">
+    <table class="table table-hover"> 
+        <tr>
+            <td><label for="desf"> Description du facture :</label></td>
+            <td><input type="text" name="desf" class="form-control"></td>
+        </tr>
+        <tr>
+            <td><label for="date"> Date :</label></td>
+            <td><input type="date" name="date" class="form-control"></td>
+        </tr>
+        <tr>
+                <td><input type="hidden" name="client_name" value="<%= c.client_name %>" class="form-control" id="client_name"></td>
+        </tr>
+    </table>
+</div>
+<button type="submit" class="btn btn-primary btn-block "><i class="fas fa-plus-square"></i></button>
+</form>
+</div>
+<% } %>

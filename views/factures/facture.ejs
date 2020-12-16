@@ -1,0 +1,97 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        
+        <a class="navbar-brand txt-nav" href="/dashboard"><i style="font-size: 30px; margin-left:40px; margin-top:-30px" class="fas fa-home"></i></a>
+   </div>  <ul class="nav navbar-nav navbar-right">
+      <li><a class="txt-nav" style=" font-size: 15px;" href="#"><i class="fas fa-user"> <%= username %></i></a></li>
+      <li><a class="txt-nav" style=" font-size: 20px;margin-right:70px;" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+      
+    </ul>
+  </div>
+</nav>
+<div class="row">
+    <div class="topnav text-center">
+      <div style="padding-left: 150px;padding-right: 150px;">
+<th><a class="txt-nav" style="color: #2b4e63" href="/clients/ajouter/produits/<%= f.client1.cl %>/<%= f._id %>">Ajouter produit a la facture</a></th>
+
+</div>
+</div>
+</div>
+<% include ../partials/messages %>
+<br>
+<div class="card card-body-6">
+  <div class="row">
+    <div class="col col-lg-4">
+        <img style="max-width:90px; margin-top:20px; margin-left:60px"
+        src="/images/fact.jpeg">
+    </div>
+  <div class="col col-lg-8">
+  </div></div>
+  <hr>
+<div class= "row"style=" padding-left: 500px;" ><br>
+      <h4 style=" padding-left: 100px;">F A C T U R E</h4></br>
+      <h5 style=" padding-left: 100px;">Tetouan le : <%= f.date %></h5>
+    </br>
+ </div>
+<br>
+ <div class= "row" style=" padding-left: 40px;">
+  <div class="col col-lg-6" >
+  
+  <h5>N° Client : <%= f.client1.cl %></h5> </br></div>
+  <div class="col col-lg-6">
+  <h4>Société / Nom du client : <%= f.client1.client_name %> </h4></br>
+  <h5>Email: <%= f.client1.client_email %></h5>
+  <h5>Tel: <%= f.client1.client_tel %></h5>
+  <h5>Adresse : <%= f.client1.client_adr %> Maroc</h5>
+  </div></div>
+</br>
+  
+  <div class="id" style=" padding-left: 50px;padding-right: 48px" >
+  <h4>Description: <%= f.desf %></h4></br>
+  <table style="width:100%" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Désignation</th>
+        <th>Prix unitaire HT</th>
+        <th>Quantité</th>
+        <th>Prix total HT</th>
+      </tr>
+      <tr></tr></thead>
+          <% if (results) { %>
+            <%  results.forEach(function (result){ %>
+              <% var sub = parseFloat(result.qty * result.prix).toFixed(2) %>
+              <% total += +sub %>
+              <% tva = (total*20)/100 %>
+              <% pttc = total + tva %>
+                <tbody>
+               <tr>
+               <td><%= result.des %></td>
+               <td><%= result.prix %></td>
+               <td><%= result.qty %></td>
+               <td> <%= sub %> </td>
+             </tr>
+            <% }) %>
+            <% } %>
+                </tbody>
+    </table></div></br>
+  
+    <div  style="width:100%; padding-left: 600px;padding-right:49px" >
+      <table class="table table-bordered" >
+        <thead>
+          <tr><th>Prix Unitaire Ht</th><th> <%= parseFloat(total).toFixed(2) %></th></tr>
+          <tr><th>TVA à 20%</th><th> <%= parseFloat(tva).toFixed(2) %> </th></tr>
+          <tr><th>Total TTC en DH</th><th><%= parseFloat(pttc).toFixed(2) %></th></tr>
+        </thead>
+        <tbody>
+       </table>
+    </div></br>
+     
+  
+  <hr>
+  <div class= "row"  style=" padding-left: 40px;">
+  <h5 class="text-center" ><%= user.adresse %> - Téléphone: <%= user.telephone %> - Fax:<%= user.fax %>  </h5>
+<h5 class="text-center">email: <%= user.email %> - Id-fiscale : <%= user.id_fiscale %></h5><br>
+</div>
+  
+</div>

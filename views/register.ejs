@@ -1,0 +1,81 @@
+<body background="/images/white.jpeg">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+      <!-- <div class="navbar-header">
+              <a class="navbar-brand txt-nav" href="/login"><img style="max-width:170px; margin-top:-20px; margin-left:50px"
+                src="/img/fs.png"></a> --> 
+        </div>  
+</nav>
+
+<div class="card card-body-5">
+<% include ./partials/messages %>
+<div class="text-center"><img src="/images/fact.jpeg" class="rounded-circle" height="90" width="90" alt="Alternative texte de l'image" /> </div>
+</br><h1 class="text-center text"><i class="fas fa-sign-in-alt"></i>  S'inscrire</h1>
+<form action="/register" method="POST">
+<div class="row">
+<div class="col col-lg-6">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td><label for="username">Nom </label></td>
+                <td><input type="text" name="username" class="form-control" id="username"></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" name="email" class="form-control" id="email"></td>
+            </tr>
+            <tr>
+                <td><label for="telephone">Telephone </label></td>
+                <td><input type="text" name="telephone" class="form-control" id="telephone"></td>
+            </tr>   
+        </thead>
+    </table>         
+</div>
+<div class="col col-lg-6">
+    <table class="table table-hover">
+        <thead>
+                <tr>
+                    <td><label for="fax">Fax </label></td>
+                    <td><input type="text" name="fax" class="form-control" id="fax"></td>
+                </tr>
+                <tr>
+                    <td><label for="adresse">Adresse </label></td>
+                    <td><input type="text" name="adresse" class="form-control" id="adresse"></td>
+                </tr>
+                <tr>
+                    <td><label for="id_fiscale">Id fiscale: </label></td>
+                    <td><input type="number" name="id_fiscale" class="form-control" id="id_fiscale"></td>
+                </tr>
+        </thead>
+    </table>
+</div>
+</div>
+<div class="row">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td><label for="pwd">Mot de passe</label></td>
+                <td><input type="password" name="password" class="form-control" id="pwd">
+                   </td>
+            </tr>
+            <tr>
+                <td><label for="pwd">Confirmer mot de passe</label></td>
+                <td><input type="password" name="password2" class="form-control" ></td>
+            </tr>
+            <tr>
+                <td><label for="admin">admin code</label></td>
+                <td><input type="password" name="adminCode" placeholder="admin code" class="form-control" id="pwd"></td>
+            </tr>
+        </thead>
+    </table>
+</div>
+    <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+</form>
+      <p class="lead mt-4 text-center"> <a href="/login">Se connecter</a></p>
+</div>
+</body>
+
+
+
+
+      

@@ -1,0 +1,89 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand txt-nav" href="/dashboard"><i style="font-size: 30px; margin-left:40px; margin-top:-30px" class="fas fa-home"></i></a>
+ </div>  <ul class="nav navbar-nav navbar-right">
+    <li><a class="txt-nav" style=" font-size: 15px;" href="#"><i class="fas fa-user"> <%= username %></i></a></li>
+    <li><a class="txt-nav" style=" font-size: 20px;margin-right:70px;" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+   </ul>
+</div>
+</nav>
+<div class="row">
+        <div class="topnav text-center">
+          <div style="padding-left: 150px;padding-right: 150px;">
+          <table class="table table-hover">
+              <thead>
+                  <tr>   
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users/<%= user._id %>">Mes informations</a></th>
+                       <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users">Liste des utilisateurs</a></th>  
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/clients">Liste des clients</a></th> 
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/factures">Liste des factures</a></th> 
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/produits">Liste des produits</a></th> 
+                  </tr> 
+              </thead>
+          </table>
+      </div></div>
+</div>
+<div class= "row">
+<div class="card card-body-5">
+<% include ../partials/messages %>
+<div class="row">
+  <div class="col col-lg-11">
+<form action="/produits" method="GET" class="form-inline" >
+  <input type="text" name="search" placeholder="Nom du produit..." class="form-control">
+  <input type="submit" value="Search" class="btn btn-secondary">
+</form>
+  </div>
+  <div class="col col-lg-1">
+      <a href="/produits/delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-danger">Vider</a>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-hover">
+        <h4 class="text-center txt-nav">liste des produits </h4>
+    </table>
+  </div>
+<div class="tab">
+<table class="table table-hover">
+
+<thead>
+                <tr style='text-align:left;'>
+                  <th>N°</th>
+                  <th>Produit</th>
+                  <th>Prix</th>
+                  <th>Quantite</th>
+                  <th>Client</th>
+                  <th>Facture</th>
+                  <th>Societe<th>
+                  <th></th>
+                  </tr>
+              </thead>
+            
+             <% if (produits) { %>
+             <%  produits.forEach(function (produit){ %>
+                 <tbody>
+                <tr>
+                <td><%= produit._id %></td>
+                <td><%= produit.des %></td>
+                <td><%= produit.prix %></td>
+                <td><%= produit.qty %></td>
+                <td><%= produit.client.client_name %></td>
+                <td><%= produit.facture.desf %></td>
+                <td><%= produit.user1.username %></td>
+                <td></td>
+                <td>
+                  <div style="float:left">
+                    <a href="/produits/modifier/<%=produit._id %>" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i></a>
+                    <a href="/produits/supprimer/<%=produit._id %>" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-xs btn-danger"><i class="fas fa-trash-alt"></i></a>
+                  </div> 
+                </td>
+                </tr>
+             <% }) %>
+             <% } %>
+                </tbody>
+                </table> 
+            </div>
+            </div>
+</div>
+

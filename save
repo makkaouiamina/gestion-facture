@@ -1,0 +1,59 @@
+ <tr><th>12</th>
+          <th>-</th>
+          <th>23</th>
+          <th><script> var x = produit(12,23);
+                  document.write(x)
+                  </script></th></tr>
+hola
+
+
+                  //ajouter produit a la facture d'un client
+router.get('/:client_id/produit',ensureAuthenticated,(req,res)=>{
+
+ Client.findById(req.params.client_id).exec((err, result)=>{
+  if(err) throw err;
+  console.log("result :"+req.params.client_id);
+    console.log(result);
+    res.render('produits/ajouter-produit',{
+      "result":result,
+    user:req.user,
+     username:req.user.username,
+    })
+
+})
+});
+
+router.post('/:client_id/produit', ensureAuthenticated,(req,res)=>{
+  Client.findById(req.params.client_id).exec((err,result)=>{
+   if(err) throw err;
+    des= req.body.des,
+    prix=req.body.prix,
+    qty=req.body.qty
+   var user = req.user;
+   var client={
+    num : result._id,
+    client_name: result.client_name,
+    client_tel: result.client_tel,
+    client_email: result.client_email,
+    client_adr: result.client_adr
+   };
+   if(!des ||!prix||!qty){
+    req.flash('error_msj','fields should not be empty');
+res.redirect('/clients/:client_id/produit')
+  }else{
+              const produit = new Produit({
+                  _id: new mongoose.Types.ObjectId(),des, prix,qty,user, client
+              });
+              produit.save().then(produit =>{
+                  console.log(produit);
+                  req.flash('success_msj',produit.des+' ajoute avec succes');
+                  res.redirect('/clients/'+result._id+'/produits');
+              }).catch(err =>{
+                  console.log(err);
+                  res.status(500).json({error : err})
+              })
+          
+  }
+
+  })
+});

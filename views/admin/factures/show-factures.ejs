@@ -1,0 +1,95 @@
+<nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand txt-nav" href="/users/dashboard"><i style="font-size: 30px; margin-left:40px; margin-top:-30px" class="fas fa-home"></i></a>
+       </div>  <ul class="nav navbar-nav navbar-right">
+          <li><a class="txt-nav" style=" font-size: 15px;" href="#"><i class="fas fa-user"> <%= username %></i></a></li>
+          <li><a class="txt-nav" style=" font-size: 20px;margin-right:70px;" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+         </ul>
+      </div>
+      </nav>
+      <div class="row">
+        <div class="topnav text-center">
+          <div style="padding-left: 150px;padding-right: 150px;">
+          <table class="table table-hover">
+              <thead>
+                  <tr>   
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users/<%= user._id %>">Mes informations</a></th>
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/users">Liste des utilisateurs</a></th>  
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/clients">Liste des clients</a></th> 
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/factures">Liste des factures</a></th> 
+                      <th><a class="txt-nav" style="color:rgb(110, 109, 109)" href="/produits">Liste des produits</a></th> 
+                  </tr> 
+              </thead>
+        </div>
+          </table>
+      </div>
+      </div>
+
+<% if(user.isAdmin){ %> 
+        <div class= "row">
+        <div class="card card-body-5">
+        <% include ../partials/messages %>
+        <div class="row">
+            <div class="col col-lg-11">
+                <form action="/clients/<%= c._id %>/fatures" method="GET" class="form-inline" >
+                  <input type="text" name="search" placeholder="Rechercher..." class="form-control">
+                  <input type="submit" value="Search" class="btn btn-secondary">
+                </form>
+            </div>
+            <div class="col col-lg-1">
+              <a href="" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-sm btn-danger">Vider</a>
+            </div>
+          </div>
+        <div class="row">
+          <table class="table table-hover">
+              <h5 class="text-center txt-nav">liste des factures du <div style="color: #2b4e63"></div></h5>
+          </table>
+        </div>
+        <div class="tab">
+        <table class="table table-hover">
+          <thead>
+            <tr style='text-align:left;'>
+              <th>N°</th>
+              <th>Description</th>
+              <th>Societe</th>
+              <th></th>
+              <th>Produits</th>
+              </tr>
+          </thead>
+        
+         <% if (factures) { %>
+         <%  factures.forEach(function (facture){ %>
+             <tbody>
+            <tr>
+            <td><%= facture._id %></td>
+            <td><%= facture.desf %></td>
+            <td><%= facture.user1.username %></td>
+            <td>
+              <div style="float:left">
+                <a href="" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i></a>
+                <a href="/factures/supprimer/<%= facture._id %>" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-xs btn-danger"><i class="fas fa-trash-alt"></i></a>
+              </div> 
+            </td>
+            <td>
+              <form action="/users/ajouter/produits/<%= facture.client1.cl %>/<%= facture._id %>" method="GET">
+                  <button class="btn btn-primary"><i class="fas fa-plus-square"></i></button>
+                </form>
+            </td> 
+            <td>
+              <form action="/users/<%= facture.user1._id %>/<%= facture.client1.cl %>/<%= facture._id %>" method="GET">
+                <input type="hidden" value="<%= facture.user1._id %>">
+                <input type="hidden" value="<%= facture._id %>">
+                <input type="hidden" name="id" value="<%= facture.client1.cl %>">
+                  <button class="btn btn-primary">consulter</button>
+                </form>
+            </td>
+          </tr>
+         <% }) %>
+         <% } %>
+            </tbody>
+            </table> 
+        </div>
+        </div>
+        </div>
+<% } %>

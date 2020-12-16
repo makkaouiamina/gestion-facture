@@ -1,0 +1,23 @@
+
+ 
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand txt-nav" href="/dashboard"><i style="font-size: 30px; margin-left:40px; margin-top:-30px" class="fas fa-home"></i></a>
+   </div>  <ul class="nav navbar-nav navbar-right">
+      <li><a class="txt-nav" style=" font-size: 15px;" href="#"><i class="fas fa-user"> <%= username %></i></a></li>
+      <li><a class="txt-nav" style=" font-size: 20px;margin-right:70px;" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+     </ul>
+  </div>
+</nav>
+   <ul class="nav navbar-nav navbar-right">
+     <li class="dropdown ">
+        <a class="dropdown-toggle txt-nav" data-toggle="dropdown" style=" font-size: 16px;width: 283px;" href="#"><i class="fas fa-user"> <%= username %></i>
+         <span class="caret"></span></a>
+         <ul class="dropdown-menu menu1">
+           <li><a  href="/logout"><span class=""></span> logout</a></li>
+         </ul>
+         </li>
+   </ul>
+</div>
+</nav>
